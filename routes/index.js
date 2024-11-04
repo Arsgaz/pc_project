@@ -17,7 +17,7 @@ router.get('/vc', function(req, res, next) {
   res.render('parts', {
     title: "Видеокарта",
     picture: "images/vc.jpg",
-    desc: "Видеокарта обрабатывает изображение"
+    desc: "Видеокарта обрабатывает и выводит изображение"
     });
 });
 router.get('/mb', function(req, res, next) {
