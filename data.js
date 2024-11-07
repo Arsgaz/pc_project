@@ -1,6 +1,6 @@
 var data = [{
     title: 'Процессор',
-    nick: 'CPU',
+    nick: 'cpu',
     avatar: '/images/cpu.jpg',
     desc: 'Процессор служит мозгом компьютера'
     },
