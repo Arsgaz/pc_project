@@ -24,13 +24,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(session({
-    secret: "PC",
-    cookie:{maxAge:60*1000},
-    proxy: true,
-    resave: true,
-    saveUninitialized: true
-  }))
+var MongoStore = require('connect-mongo');
+  app.use(session({
+  secret: "PC",
+  cookie:{maxAge:60*1000},
+  proxy: true,
+  resave: true,
+  saveUninitialized: true,
+  store: MongoStore.create({mongoUrl: 'mongodb://localhost/pc'})
+}))
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
