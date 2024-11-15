@@ -6,10 +6,12 @@ var logger = require('morgan');
 var mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/pc')
 var session = require("express-session")
+var MongoStore = require('connect-mongo');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var parts = require('./routes/parts');
+
 
 var app = express();
 
@@ -24,8 +26,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-var MongoStore = require('connect-mongo');
-  app.use(session({
+app.use(session({
   secret: "PC",
   cookie:{maxAge:60*1000},
   proxy: true,

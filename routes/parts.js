@@ -8,6 +8,7 @@ router.get('/', function(req, res, next) {
 });
 
 module.exports = router;
+
 /* Страница parts */
 router.get("/:nick", async function(req, res, next) {
     var parts = await Part.find({nick: req.params.nick});
