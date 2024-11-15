@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Part = require('../models/part').Part;
+var checkAuth = require("../middlewares/checkAuth.js");
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -10,7 +11,7 @@ router.get('/', function(req, res, next) {
 module.exports = router;
 
 /* Страница parts */
-router.get("/:nick", async function(req, res, next) {
+router.get("/:nick", checkAuth, async function(req, res, next) {
     var parts = await Part.find({nick: req.params.nick});
     console.log(parts)
     if(!parts.length) return next(new Error("Такой части компьютера нет"))
@@ -20,4 +21,4 @@ router.get("/:nick", async function(req, res, next) {
         picture: part.avatar,
         desc: part.desc
     })
-    });
+});
